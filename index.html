@@ -1,0 +1,42 @@
+html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Duplicate Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test Duplicate Detection</h1>
+    <div id="content">
+        <input type="text" id="inputText" placeholder="Enter text to test for duplicates" style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <button id="btnDetect" style="padding: 10px; cursor: pointer;">Detect Duplicates</button>
+        <div id="result" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        document.getElementById('btnDetect').addEventListener('click', function () {
+            var text = document.getElementById('inputText').value;
+            var words = text.split(' ');
+            var duplicates = [];
+
+            for (var i = 0; i < words.length; i++) {
+                for (var j = i + 1; j < words.length; j++) {
+                    if (words[i] === words[j] && duplicates.indexOf(words[i]) === -1) {
+                        duplicates.push(words[i]);
+                    }
+                }
+            }
+
+            if (duplicates.length > 0) {
+                document.getElementById('result').innerHTML = "Duplicates: " + duplicates.join(', ');
+            } else {
+                document.getElementById('result').innerHTML = "No duplicates found.";
+            }
+        });
+    </script>
+</body>
+</html>
